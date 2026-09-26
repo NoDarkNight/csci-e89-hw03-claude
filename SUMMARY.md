@@ -154,7 +154,3 @@ As requested, each check ran on its own, one after another:
 | `mlp_fashion_mnist_tuned.pt`, `tuning_results.json`, `optuna_trials.csv`, `tuning_log.txt` | Tuning outputs (30 trials) |
 | `PROMPTS.md` | Log of every request |
 | `SUMMARY.md` | This summary |
-
-## Still to do
-
-- Assemble the final Jupyter Notebook from the scripts, in the cell order above.
