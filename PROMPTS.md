@@ -78,3 +78,11 @@ Outputs committed: `optuna_trials.csv`, `tuning_results.json`, `tuning_log.txt`,
 - Retrained 20 epochs → final val acc 0.8934 (baseline 0.8908), **test acc 0.8891** vs. baseline **0.8894** (−0.03 pp) — essentially a tie. The baseline hyperparameters were already near-optimal for this search space; tuning mostly recovers them rather than beating them.
 
 Overwrote `optuna_trials.csv`, `tuning_results.json`, `tuning_log.txt`, and `mlp_fashion_mnist_tuned.pt` with the 30-trial results (the 10-trial versions remain in git history).
+
+---
+
+## 8. Verification + `SUMMARY.md`
+
+> All good. Verify that everything we have so far works, then write SUMMARY.md to summarize our entire dialogue. When verifying, do not try to run multiple things at once. Take things one at a time, otherwise the commands conflict with each other.
+
+**Result:** Ran every script one at a time, in the foreground: `data.py`, `model.py`, `train.py` (full 20 epochs), `plot.py`, `predict.py`, `tune.py` (full 30 trials). All reproduced their committed results exactly; the regenerated baseline weights, history, and plot were byte-identical, and the tuning output matched `tuning_log.txt` except for timing. Then ran all six files as cells of a real Jupyter notebook (via `nbclient`, with reduced epochs/trials): no errors, and the plot displayed inline. Wrote `SUMMARY.md` covering the whole conversation, pipeline, results, verification, and design decisions.
