@@ -16,3 +16,11 @@ A running log of each request made during this project.
 > Okay. The first step is to write "data.py". This should handle downloading Fashion MNIST with torchvision, converting and normalizing vectors to float32 tensors, setting the seed (42), splitting the 60,000 training images into 55,000 for training and 5,000 for validation, creating dataloaders with batch size 32, and whatever else is necessary.
 
 **Result:** Created `data.py` (seeding, download, seeded 55k/5k split, float32 conversion + normalization using train-split mean/std, train/val/test DataLoaders at batch size 32, sanity-check printout), `.gitignore` (excludes `data/`), and this `PROMPTS.md`.
+
+---
+
+## 2. `model.py`
+
+> Nice. Next, write model.py with a MLP classifier as an nn.Module. Flatten the 28x28 image, then use two hidden layers of 300 and 100 neurons with ReLU. The output layer should be 10 logits (one per class).
+
+**Result:** Created `model.py` with `MLPClassifier` (Flatten → Linear 784→300 → ReLU → Linear 300→100 → ReLU → Linear 100→10, raw logits), a `count_parameters` helper (266,610 trainable parameters), a seeded `model` instance moved to `device`, and a shape sanity check.
