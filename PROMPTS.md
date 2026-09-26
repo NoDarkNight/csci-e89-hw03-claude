@@ -50,3 +50,16 @@ A running log of each request made during this project.
 > Lets do some predictions now. Write predict.py to use the trained model: take the first 3 images from the validation set, print the predicted and true class names, the softmax probabilities for all 10 classes (rounded to 3 decimals), and the top 4 most likely classes for each image. Again, it should for Jupyter Notebook. Commit and update PROMPTS.md.
 
 **Result:** Created `predict.py`: loads `mlp_fashion_mnist.pt`, batches the first 3 validation images, applies softmax, and prints predicted vs. true class, all 10 class probabilities (3 decimals), and the top-4 classes via `topk`. Verified run: all 3 correct — Sneaker (0.999), Coat (0.995, runner-up Pullover 0.005), Pullover (0.987, runner-up Shirt 0.013).
+
+---
+
+## 6. `tune.py` (Optuna hyperparameter tuning)
+
+> Actually, let's now try some hyperparameter tuning. Use Optuna to search the learning rate (log scale from about 1e-5 to 1e-1), the number of neurons in each hidden layer, and the optimizer momentum. Try your best to keep it fast; maybe do about 10 trials of 5 epochs each. Print a table of the trials and the best parameters, then retrain the best configuration for 20 epochs and report its test accuracy compared with the baseline from train.py. Commit the results and update PROMPTS.md again.
+
+**Result:** Created `tune.py`. Search space: lr 1e-5–1e-1 (log), hidden1 50–500, hidden2 25–300 (step 25), SGD momentum 0–0.99; 10 trials × 5 epochs, TPE sampler (seed 42) + median pruner (5 of 10 trials pruned). For speed, datasets are preloaded as tensors on `device` and batched by slicing (same data, batch size 32) — the whole search took ~58 s on CPU.
+
+- Best trial #3: lr 2.14e-2, hidden 150/75, momentum 0.182 (val acc 0.8684 after 5 epochs)
+- Retrained 20 epochs → **test acc 0.8850** vs. baseline **0.8894** (−0.44 pp): the tuned config did *not* beat the baseline. With only 10 trials, the search mostly sampled learning rates well below the baseline's effective step size.
+
+Outputs committed: `optuna_trials.csv`, `tuning_results.json`, `tuning_log.txt`, `mlp_fashion_mnist_tuned.pt`.

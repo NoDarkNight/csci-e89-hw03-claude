@@ -1,0 +1,52 @@
+Loading datasets into memory...
+Running 10 trials x up to 5 epochs on cpu...
+Search time: 57.8s
+
+Trials:
+ number    state val_acc       lr momentum  hidden1  hidden2
+      0 COMPLETE  0.7800 3.15e-04    0.593      500      225
+      1 COMPLETE  0.6720 4.21e-05    0.858      100       25
+      2 COMPLETE  0.8672 2.54e-03    0.960      375       25
+      3 COMPLETE  0.8684 2.14e-02    0.182      150       75
+      4   PRUNED  0.5094 1.65e-04    0.288      275      150
+      5 COMPLETE  0.8432 2.80e-03    0.363      100      100
+      6   PRUNED  0.7132 6.67e-04    0.509      400       75
+      7   PRUNED  0.7564 2.34e-03    0.169       50      200
+      8   PRUNED  0.3822 1.82e-05    0.800      500      300
+      9   PRUNED  0.4334 1.65e-04    0.436       75      225
+
+Best trial: #3 (val acc 0.8684)
+Best parameters:
+  lr        2.137e-02
+  hidden1   150
+  hidden2   75
+  momentum  0.1815704647548995
+
+Retraining best configuration for 20 epochs...
+Epoch  1/20 | val acc 0.8372
+Epoch  2/20 | val acc 0.8492
+Epoch  3/20 | val acc 0.8574
+Epoch  4/20 | val acc 0.8730
+Epoch  5/20 | val acc 0.8684
+Epoch  6/20 | val acc 0.8668
+Epoch  7/20 | val acc 0.8840
+Epoch  8/20 | val acc 0.8776
+Epoch  9/20 | val acc 0.8862
+Epoch 10/20 | val acc 0.8850
+Epoch 11/20 | val acc 0.8886
+Epoch 12/20 | val acc 0.8846
+Epoch 13/20 | val acc 0.8894
+Epoch 14/20 | val acc 0.8814
+Epoch 15/20 | val acc 0.8804
+Epoch 16/20 | val acc 0.8896
+Epoch 17/20 | val acc 0.8862
+Epoch 18/20 | val acc 0.8808
+Epoch 19/20 | val acc 0.8840
+Epoch 20/20 | val acc 0.8840
+
+=== Test accuracy ===
+Baseline (train.py: lr=0.1, momentum=0, 300/100): 0.8894
+Tuned    (Optuna best, 20 epochs):              0.8850
+Difference: -0.44 percentage points
+
+Saved trials to optuna_trials.csv, results to tuning_results.json, weights to mlp_fashion_mnist_tuned.pt
