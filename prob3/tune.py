@@ -11,7 +11,11 @@ Then retrains the best configuration for 20 epochs and compares its test
 accuracy with the baseline from train.py.
 """
 import json
+import warnings
 
+# Optuna imports tqdm.auto, which warns "IProgress not found" in Jupyter when
+# ipywidgets is not installed; progress bars are not used here, so silence it.
+warnings.filterwarnings("ignore", message="IProgress not found")
 import optuna
 import pandas as pd
 import torch
