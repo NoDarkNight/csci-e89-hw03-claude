@@ -42,3 +42,11 @@ A running log of each request made during this project.
 > Write plot.py to plot the training accuracy per epoch. Put validation accuracy on the same chart for comparison. Save it as png, but make it display them inline when running in Jupyter. Have train.py call the plotting after training. Regenerate the plots from history.json, then commit with the images and update PROMPTS.md.
 
 **Result:** Created `plot.py` with `plot_accuracy` / `plot_history`: one chart of training and validation accuracy per epoch (plus final test accuracy as a dashed reference line), colorblind-safe colors, end-of-line value labels, saved to `accuracy.png`. Shown inline via `plt.show()` only when running in a Jupyter kernel; closed otherwise. `train.py` now calls `plot_history(history)` after saving (in the notebook, the plot.py cell goes before the train.py cell). Regenerated `accuracy.png` from the existing `history.json` without retraining.
+
+---
+
+## 5. `predict.py`
+
+> Lets do some predictions now. Write predict.py to use the trained model: take the first 3 images from the validation set, print the predicted and true class names, the softmax probabilities for all 10 classes (rounded to 3 decimals), and the top 4 most likely classes for each image. Again, it should for Jupyter Notebook. Commit and update PROMPTS.md.
+
+**Result:** Created `predict.py`: loads `mlp_fashion_mnist.pt`, batches the first 3 validation images, applies softmax, and prints predicted vs. true class, all 10 class probabilities (3 decimals), and the top-4 classes via `topk`. Verified run: all 3 correct — Sneaker (0.999), Coat (0.995, runner-up Pullover 0.005), Pullover (0.987, runner-up Shirt 0.013).
