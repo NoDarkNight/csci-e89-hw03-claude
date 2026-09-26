@@ -1,0 +1,56 @@
+Trial 0: lr=3.15e-04 hidden=(478, 223) momentum=0.593 -> val_acc=0.7818
+Trial 1: lr=4.21e-05 hidden=(120, 26) momentum=0.858 -> val_acc=0.6970
+Trial 2: lr=2.54e-03 hidden=(369, 15) momentum=0.960 -> val_acc=0.8760
+Trial 3: lr=2.14e-02 hidden=(145, 62) momentum=0.182 -> val_acc=0.8744
+Trial 4: lr=1.65e-04 hidden=(286, 135) momentum=0.288 -> val_acc=0.6930
+Trial 5: lr=2.80e-03 hidden=(112, 95) momentum=0.363 -> val_acc=0.8434
+Trial 6: lr=6.67e-04 hidden=(404, 68) momentum=0.509 -> val_acc=0.8128
+Trial 7: lr=2.34e-03 hidden=(70, 186) momentum=0.169 -> val_acc=0.8320
+Trial 8: lr=1.82e-05 hidden=(477, 290) momentum=0.800 -> val_acc=0.6098
+Trial 9: lr=1.65e-04 hidden=(94, 209) momentum=0.436 -> val_acc=0.7204
+
+Optuna trials:
+ number  val_accuracy       lr  momentum  n_hidden1  n_hidden2  duration
+      0        0.7818 0.000315     0.593        478        223      23.2
+      1        0.6970 0.000042     0.858        120         26      15.8
+      2        0.8760 0.002538     0.960        369         15      18.6
+      3        0.8744 0.021368     0.182        145         62      16.8
+      4        0.6930 0.000165     0.288        286        135      19.1
+      5        0.8434 0.002802     0.363        112         95      16.4
+      6        0.8128 0.000667     0.509        404         68      20.0
+      7        0.8320 0.002342     0.169         70        186      15.9
+      8        0.6098 0.000018     0.800        477        290      23.5
+      9        0.7204 0.000165     0.436         94        209      16.6
+
+Best trial: #2, val_acc=0.8760
+Best parameters: {'lr': 0.002537815508265664, 'n_hidden1': 369, 'n_hidden2': 15, 'momentum': 0.9602107536403743}
+
+Retraining the best configuration for 20 epochs:
+Epoch  1/20  train_loss=0.5428  train_acc=0.8028  val_acc=0.8420  (3.7s)
+Epoch  2/20  train_loss=0.3711  train_acc=0.8649  val_acc=0.8572  (3.6s)
+Epoch  3/20  train_loss=0.3257  train_acc=0.8801  val_acc=0.8660  (3.7s)
+Epoch  4/20  train_loss=0.3007  train_acc=0.8884  val_acc=0.8710  (3.5s)
+Epoch  5/20  train_loss=0.2780  train_acc=0.8963  val_acc=0.8760  (3.5s)
+Epoch  6/20  train_loss=0.2603  train_acc=0.9038  val_acc=0.8758  (3.6s)
+Epoch  7/20  train_loss=0.2468  train_acc=0.9068  val_acc=0.8738  (3.6s)
+Epoch  8/20  train_loss=0.2359  train_acc=0.9124  val_acc=0.8882  (3.6s)
+Epoch  9/20  train_loss=0.2231  train_acc=0.9163  val_acc=0.8844  (3.8s)
+Epoch 10/20  train_loss=0.2164  train_acc=0.9190  val_acc=0.8802  (3.6s)
+Epoch 11/20  train_loss=0.2032  train_acc=0.9247  val_acc=0.8886  (3.6s)
+Epoch 12/20  train_loss=0.1965  train_acc=0.9267  val_acc=0.8872  (3.6s)
+Epoch 13/20  train_loss=0.1873  train_acc=0.9288  val_acc=0.8834  (3.5s)
+Epoch 14/20  train_loss=0.1813  train_acc=0.9317  val_acc=0.8834  (3.5s)
+Epoch 15/20  train_loss=0.1714  train_acc=0.9355  val_acc=0.8920  (3.5s)
+Epoch 16/20  train_loss=0.1666  train_acc=0.9373  val_acc=0.8910  (3.4s)
+Epoch 17/20  train_loss=0.1562  train_acc=0.9408  val_acc=0.8882  (3.4s)
+Epoch 18/20  train_loss=0.1522  train_acc=0.9427  val_acc=0.8894  (3.7s)
+Epoch 19/20  train_loss=0.1465  train_acc=0.9453  val_acc=0.8884  (3.5s)
+Epoch 20/20  train_loss=0.1407  train_acc=0.9465  val_acc=0.8888  (3.6s)
+
+Baseline vs. tuned (after 20 epochs):
+            train_acc   val_acc  test_acc
+baseline       0.9505    0.8908    0.8894
+tuned          0.9465    0.8888    0.8875
+Test accuracy change: -0.0019 (-0.19 percentage points)
+Saved optuna_trials.csv, tuning_results.json, mlp_fashion_mnist_tuned.pt
+Saved plot to accuracy_tuned.png
