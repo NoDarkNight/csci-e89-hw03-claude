@@ -22,6 +22,7 @@ containing all of them. A running log of requests was kept in `PROMPTS.md`.
 | 6 | Tune with Optuna (10 trials × 5 epochs) | Best: lr 0.021, 150/75, momentum 0.18 → test **0.8850**, *below* the baseline. |
 | 7 | Re-run tuning with 30 trials | Best: lr 0.050, 200/200, momentum 0.26 → test **0.8891**, essentially tied with the baseline. |
 | 8 | Verify everything, one step at a time; write this summary | Every script re-run in sequence and reproduced its committed results exactly; all 6 files also ran as notebook cells in a real Jupyter kernel. |
+| 9 | Combine everything into the final notebook `e89_Li_Ethan_HW03_Prob2.ipynb` | Self-contained notebook with explanations and quoted prompts; executed from a fresh kernel, and its outputs match the scripts byte for byte. Found and fixed a reproducibility bug in the data sanity check along the way. |
 
 ## The pipeline
 
@@ -153,8 +154,30 @@ As requested, each check ran on its own, one after another:
 | `mlp_fashion_mnist.pt`, `history.json`, `accuracy.png` | Baseline outputs |
 | `mlp_fashion_mnist_tuned.pt`, `tuning_results.json`, `optuna_trials.csv`, `tuning_log.txt` | Tuning outputs (30 trials) |
 | `PROMPTS.md` | Log of every request |
+| `e89_Li_Ethan_HW03_Prob2.ipynb` | Final notebook: all code, explanations, quoted prompts, saved outputs |
 | `SUMMARY.md` | This summary |
 
-## Still to do
+## Final notebook: `e89_Li_Ethan_HW03_Prob2.ipynb`
 
-- Assemble the final Jupyter Notebook from the scripts, in the cell order above.
+The deliverable notebook contains all of the code above in 14 cells:
+
+- **Title cell:** Ethan Li, *CSCI E-89 Deep Learning, Assignment 03, Problem 2*, a short description of the project,
+  requirements and results in brief.
+- **Six sections**, each a markdown cell followed by a code cell: data → model → plotting helpers → training →
+  predictions → tuning. Each markdown cell explains what the code does and quotes, word for word, the prompt(s) from
+  `PROMPTS.md` that produced it (tuning quotes both prompt 6 and prompt 7). The code cells carry inline comments.
+- **Conclusion cell** comparing the baseline with the tuned model.
+
+**Self-contained:** the code cells were adapted from the scripts with the fallbacks that import `data`/`model`/`plot`
+from the `.py` files removed, and with the `__main__` guards dropped, so nothing depends on those files.
+
+**Execution:** run from a fresh kernel, top to bottom (the same as **Restart & Run All**), in an empty folder with no
+`.py` files and no downloaded data. It took about 9 minutes on a CPU, with no errors, and execution counts run 1–6 in
+order. The saved outputs, including the inline accuracy chart, are committed with the notebook. The weights, history,
+chart and tuning results it produced are **byte-identical** to the files the standalone scripts committed.
+
+**Bug found while building it:** the first run of the notebook reached 88.89% test accuracy instead of 88.94%. The
+data cell's sanity check draws one training batch, which advanced the seeded generator that controls shuffling, so
+training then saw a different order than `train.py`, which imports `data.py` without running that check. The fix saves
+and restores the generator's state around the sanity check, in both the notebook and `data.py`. The standalone scripts
+are unaffected, since `data.py`'s check only runs when the file is executed directly.

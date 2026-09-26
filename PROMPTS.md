@@ -86,3 +86,11 @@ Overwrote `optuna_trials.csv`, `tuning_results.json`, `tuning_log.txt`, and `mlp
 > All good. Verify that everything we have so far works, then write SUMMARY.md to summarize our entire dialogue. When verifying, do not try to run multiple things at once. Take things one at a time, otherwise the commands conflict with each other.
 
 **Result:** Ran every script one at a time, in the foreground: `data.py`, `model.py`, `train.py` (full 20 epochs), `plot.py`, `predict.py`, `tune.py` (full 30 trials). All reproduced their committed results exactly; the regenerated baseline weights, history, and plot were byte-identical, and the tuning output matched `tuning_log.txt` except for timing. Then ran all six files as cells of a real Jupyter notebook (via `nbclient`, with reduced epochs/trials): no errors, and the plot displayed inline. Wrote `SUMMARY.md` covering the whole conversation, pipeline, results, verification, and design decisions.
+
+---
+
+## 9. Final notebook `e89_Li_Ethan_HW03_Prob2.ipynb`
+
+> Finally, wrap all the code so far into one Jupyter notebook with file name e89_Li_Ethan_HW03_Prob2.ipynb. The first cell should be markdown with my name (Ethan Li), "CSCI E-89 Deep Learning, Assignment 03, Problem 2", and a short description. Before each code cell, add a markdown cell that explains what it does and quotes the prompt from PROMPTS.md that produced that code, and add comments inside the code. It should not import the .py files and should run top to bottom with Restart & Run All. Execute it so the outputs are saved, commit it, and add a short section to SUMMARY.md and PROMPTS.md.
+
+**Result:** Built the notebook (title cell, 6 explanation + code pairs quoting prompts 1–7 verbatim, conclusion cell). The code cells are adapted from the scripts without any imports from the `.py` files. Executed it from a fresh kernel in an empty folder (~9 min on CPU): no errors, outputs saved. The first run showed baseline test accuracy 0.8889 instead of 0.8894. The data cell's sanity-check batch advanced the seeded shuffling generator. Fixed by saving and restoring the generator state (in the notebook and `data.py`). After the fix, every output file the notebook produces is byte-identical to the scripts' committed results. Added a notebook section to `SUMMARY.md`.
