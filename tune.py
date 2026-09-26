@@ -6,7 +6,7 @@
 #   - hidden layer 1 neurons : 50 to 500
 #   - hidden layer 2 neurons : 25 to 300
 #   - SGD momentum           : 0.0 to 0.99
-# 10 trials x 5 epochs, maximizing validation accuracy. A median pruner stops
+# 30 trials x 5 epochs, maximizing validation accuracy. A median pruner stops
 # clearly bad trials early. Then the best configuration is retrained for 20
 # epochs and its test accuracy is compared with the train.py baseline.
 #
@@ -39,7 +39,7 @@ except NameError:
 
 # ----------------------------- Configuration ---------------------------------
 SEED = 42
-N_TRIALS = 10
+N_TRIALS = 30
 TUNE_EPOCHS = 5
 FINAL_EPOCHS = 20
 NUM_CLASSES = 10

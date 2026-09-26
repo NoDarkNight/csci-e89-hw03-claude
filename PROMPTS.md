@@ -63,3 +63,18 @@ A running log of each request made during this project.
 - Retrained 20 epochs → **test acc 0.8850** vs. baseline **0.8894** (−0.44 pp): the tuned config did *not* beat the baseline. With only 10 trials, the search mostly sampled learning rates well below the baseline's effective step size.
 
 Outputs committed: `optuna_trials.csv`, `tuning_results.json`, `tuning_log.txt`, `mlp_fashion_mnist_tuned.pt`.
+
+---
+
+## 7. Re-run tuning with 30 trials
+
+> Try that please, thank you!
+
+(In response to my suggestion to run a 30-trial search so Optuna could explore learning rates closer to the baseline's 0.1.)
+
+**Result:** Set `N_TRIALS = 30` in `tune.py` and re-ran (search ~178 s on CPU; 14 of 30 trials pruned). The first 10 trials match the earlier run (same seed); later trials concentrated on lr ≈ 0.02–0.1.
+
+- Best trial #26: lr 4.96e-2, hidden 200/200, momentum 0.258 (val acc 0.8814 after 5 epochs)
+- Retrained 20 epochs → final val acc 0.8934 (baseline 0.8908), **test acc 0.8891** vs. baseline **0.8894** (−0.03 pp) — essentially a tie. The baseline hyperparameters were already near-optimal for this search space; tuning mostly recovers them rather than beating them.
+
+Overwrote `optuna_trials.csv`, `tuning_results.json`, `tuning_log.txt`, and `mlp_fashion_mnist_tuned.pt` with the 30-trial results (the 10-trial versions remain in git history).
