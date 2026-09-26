@@ -22,6 +22,7 @@ containing all of them. A running log of requests was kept in `PROMPTS.md`.
 | 6 | Tune with Optuna (10 trials × 5 epochs) | Best: lr 0.021, 150/75, momentum 0.18 → test **0.8850**, *below* the baseline. |
 | 7 | Re-run tuning with 30 trials | Best: lr 0.050, 200/200, momentum 0.26 → test **0.8891**, essentially tied with the baseline. |
 | 8 | Verify everything, one step at a time; write this summary | Every script re-run in sequence and reproduced its committed results exactly; all 6 files also ran as notebook cells in a real Jupyter kernel. |
+| 9 | Combine everything into the final notebook `e89_Li_Ethan_HW03_Prob2.ipynb` | Self-contained notebook with explanations and quoted prompts; executed from a fresh kernel, and its outputs match the scripts byte for byte. Found and fixed a reproducibility bug in the data sanity check along the way. |
 
 ## The pipeline
 
@@ -153,4 +154,5 @@ As requested, each check ran on its own, one after another:
 | `mlp_fashion_mnist.pt`, `history.json`, `accuracy.png` | Baseline outputs |
 | `mlp_fashion_mnist_tuned.pt`, `tuning_results.json`, `optuna_trials.csv`, `tuning_log.txt` | Tuning outputs (30 trials) |
 | `PROMPTS.md` | Log of every request |
+| `e89_Li_Ethan_HW03_Prob2.ipynb` | Final notebook: all code, explanations, quoted prompts, saved outputs |
 | `SUMMARY.md` | This summary |

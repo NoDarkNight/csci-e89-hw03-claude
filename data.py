@@ -125,7 +125,11 @@ if __name__ == "__main__":
     print(f"Train: {len(train_dataset):,} | Val: {len(val_dataset):,} | Test: {len(test_dataset):,}")
     print(f"Batches -> train: {len(train_loader)}, val: {len(val_loader)}, test: {len(test_loader)}")
 
+    # Drawing a batch advances the loader's seeded shuffling generator; restore
+    # its state so a notebook cell running this check doesn't change training.
+    _gen_state = _loader_gen.get_state()
     images, labels = next(iter(train_loader))
+    _loader_gen.set_state(_gen_state)
     print(f"Batch images: shape={tuple(images.shape)}, dtype={images.dtype}")
     print(f"Batch labels: shape={tuple(labels.shape)}, dtype={labels.dtype}")
     print(f"Batch pixel mean={images.mean():.3f}, std={images.std():.3f}")
