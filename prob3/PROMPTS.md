@@ -32,4 +32,24 @@ the files and commits it produced.
 
 ### Files and commits produced
 
-(Filled in as the work progresses.)
+All commits are on branch `claude/trusting-turing-h7t5bz`, in this order.
+
+| Commit | Step | Files |
+|---|---|---|
+| `79fbdaa` | Setup | `prob3/.gitignore`, `prob3/PROMPTS.md` |
+| `a187a32` | 1 | `prob3/data.py` |
+| `3921d9e` | 2 | `prob3/model.py` |
+| `4067e4a` | 3 | `prob3/train.py` |
+| `1134a72` | 4 | `prob3/plot.py` |
+| `6206f17` | 5 | `prob3/predict.py` |
+| `529fa92` | 6 | `prob3/tune.py` |
+| `64f3758` | 7 | Outputs: `history.json`, `accuracy.png`, `accuracy_tuned.png`, `optuna_trials.csv`, `tuning_results.json`, `train_log.txt`, `tuning_log.txt`, `mlp_fashion_mnist.pt`, `mlp_fashion_mnist_tuned.pt`. Fix: `tune.py` silences Optuna's tqdm "IProgress not found" warning in Jupyter |
+| `82ae413` | 8 | `prob3/SUMMARY.md` |
+| `6f147d7` | 9 | `prob3/e89_Li_Ethan_HW03_Prob3.ipynb` (self-contained, executed) |
+| Last commit (below) | 9 | `SUMMARY.md` notebook section; this `PROMPTS.md` table |
+
+A commit can't contain its own hash. The commit that adds this table is the
+last commit on the branch: "prob3: document the notebook in SUMMARY.md and
+PROMPTS.md".
+
+No follow-up requests have been made yet.

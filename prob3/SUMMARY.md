@@ -136,6 +136,31 @@ The baseline's lr 0.1 is already a strong setting for this model. More
 trials, a narrower lr range (about 1e-3 to 3e-1), or ranking on longer runs
 would be the next steps.
 
+## The notebook: `e89_Li_Ethan_HW03_Prob3.ipynb` (commit `6f147d7`)
+
+A single self-contained notebook that contains all of the code:
+
+- It opens with a markdown cell giving the name (Ethan Li), "CSCI E-89 Deep
+  Learning, Assignment 03, Problem 3" and a short description.
+- The next markdown cell quotes the prompt word for word, followed by a short
+  requirements cell.
+- Each of the six scripts follows as a code cell, in run order. Before each
+  one, a markdown cell names the source script and explains what it does.
+  Each code cell starts with a `# ===== Source: prob3/<script> =====` comment
+  and keeps the scripts' docstrings and comments.
+- A closing markdown cell summarizes the results.
+- **It does not import the .py files.** A small build script (not committed;
+  it lived in the session's scratch folder) generated the notebook from the
+  scripts. It removed the `try: from data import ...` blocks and the two
+  `from plot import plot_history` fallbacks, then checked that no import of
+  a local module remained. `train.py`'s code cell ends with a comment instead
+  of plotting, because the `plot.py` cell right after it draws the chart.
+- **It was executed top to bottom in a fresh kernel**, the equivalent of
+  Restart & Run All (`jupyter nbconvert --execute`), with the outputs saved.
+  All 6 code cells ran without errors or warnings, both plots render inline,
+  and every number matches the script runs exactly: baseline test 0.8894,
+  tuned 0.8875. Runtime is about 7 minutes on 4 CPU cores.
+
 ## Files in `prob3/`
 
 - Scripts: `data.py`, `model.py`, `train.py`, `plot.py`, `predict.py`, `tune.py`
@@ -146,5 +171,6 @@ would be the next steps.
   - `tuning_results.json`: trials, best parameters, tuned history, baseline vs. tuned
   - `train_log.txt`, `tuning_log.txt`: console output
   - `mlp_fashion_mnist.pt`, `mlp_fashion_mnist_tuned.pt`: model weights
+- `e89_Li_Ethan_HW03_Prob3.ipynb`: the self-contained, executed notebook
 - `PROMPTS.md` (prompt log), this `SUMMARY.md`, `.gitignore` (`data/`,
   `__pycache__/`, `.ipynb_checkpoints/`)
