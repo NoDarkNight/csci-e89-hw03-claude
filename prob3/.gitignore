@@ -1,0 +1,7 @@
+# Downloaded Fashion MNIST dataset (torchvision downloads it into prob3/data/)
+data/
+
+# Python / Jupyter caches
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
