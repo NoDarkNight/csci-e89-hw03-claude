@@ -1,0 +1,72 @@
+Loading datasets into memory...
+Running 30 trials x up to 5 epochs on cpu...
+Search time: 178.1s
+
+Trials:
+ number    state val_acc       lr momentum  hidden1  hidden2
+      0 COMPLETE  0.7800 3.15e-04    0.593      500      225
+      1 COMPLETE  0.6720 4.21e-05    0.858      100       25
+      2 COMPLETE  0.8672 2.54e-03    0.960      375       25
+      3 COMPLETE  0.8684 2.14e-02    0.182      150       75
+      4   PRUNED  0.5094 1.65e-04    0.288      275      150
+      5 COMPLETE  0.8432 2.80e-03    0.363      100      100
+      6   PRUNED  0.7132 6.67e-04    0.509      400       75
+      7   PRUNED  0.7564 2.34e-03    0.169       50      200
+      8   PRUNED  0.3822 1.82e-05    0.800      500      300
+      9   PRUNED  0.4334 1.65e-04    0.436       75      225
+     10 COMPLETE  0.8496 3.98e-02    0.895      100      100
+     11 COMPLETE  0.8750 2.59e-02    0.575      150       25
+     12   PRUNED  0.8450 2.62e-02    0.165      225       25
+     13 COMPLETE  0.8698 4.45e-02    0.654      275       75
+     14 COMPLETE  0.8774 3.36e-02    0.560      200      100
+     15   PRUNED  0.8512 3.56e-02    0.547       50       25
+     16 COMPLETE  0.8704 9.36e-02    0.550      150      125
+     17   PRUNED  0.8252 4.29e-03    0.697      150       75
+     18   PRUNED  0.8504 9.90e-02    0.381      225       25
+     19 COMPLETE  0.8758 3.50e-02    0.205      225      125
+     20   PRUNED  0.8226 8.44e-03    0.295      325      100
+     21 COMPLETE  0.8678 3.97e-02    0.797      325      150
+     22   PRUNED  0.8156 7.19e-03    0.269      200      175
+     23   PRUNED  0.7446 2.11e-03    0.081      175      125
+     24   PRUNED  0.7920 1.84e-03    0.639       50       50
+     25 COMPLETE  0.8792 5.63e-02    0.128      225      150
+     26 COMPLETE  0.8814 4.96e-02    0.258      200      200
+     27 COMPLETE  0.8776 5.46e-02    0.312      125      200
+     28   PRUNED  0.8534 7.00e-02    0.249      175      200
+     29   PRUNED  0.8526 4.55e-02    0.060      275      175
+
+Best trial: #26 (val acc 0.8814)
+Best parameters:
+  lr        4.961e-02
+  hidden1   200
+  hidden2   200
+  momentum  0.25775875561903183
+
+Retraining best configuration for 20 epochs...
+Epoch  1/20 | val acc 0.8484
+Epoch  2/20 | val acc 0.8576
+Epoch  3/20 | val acc 0.8634
+Epoch  4/20 | val acc 0.8794
+Epoch  5/20 | val acc 0.8814
+Epoch  6/20 | val acc 0.8744
+Epoch  7/20 | val acc 0.8880
+Epoch  8/20 | val acc 0.8832
+Epoch  9/20 | val acc 0.8878
+Epoch 10/20 | val acc 0.8882
+Epoch 11/20 | val acc 0.8894
+Epoch 12/20 | val acc 0.8826
+Epoch 13/20 | val acc 0.8898
+Epoch 14/20 | val acc 0.8878
+Epoch 15/20 | val acc 0.8870
+Epoch 16/20 | val acc 0.8870
+Epoch 17/20 | val acc 0.8870
+Epoch 18/20 | val acc 0.8886
+Epoch 19/20 | val acc 0.8882
+Epoch 20/20 | val acc 0.8934
+
+=== Test accuracy ===
+Baseline (train.py: lr=0.1, momentum=0, 300/100)   0.8894
+Tuned (Optuna best, retrained 20 epochs)           0.8891
+Difference: -0.03 percentage points
+
+Saved trials to optuna_trials.csv, results to tuning_results.json, weights to mlp_fashion_mnist_tuned.pt
