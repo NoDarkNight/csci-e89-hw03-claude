@@ -6,11 +6,13 @@
 # - 20 epochs; per epoch records mean training loss, training accuracy, and
 #   validation accuracy (torchmetrics multiclass accuracy) in `history`
 # - Runs on a GPU if available, otherwise CPU
-# - After training: evaluates test accuracy, saves model weights and history
+# - After training: evaluates test accuracy, saves model weights and history,
+#   and plots training vs. validation accuracy (via plot.py)
 #
-# Notebook-friendly: paste into a Jupyter cell after the data.py and model.py
-# cells; it reuses `train_loader`, `val_loader`, `test_loader`, `model`, and
-# `device` from those cells. Run standalone, it imports them from the files.
+# Notebook-friendly: paste into a Jupyter cell after the data.py, model.py, and
+# plot.py cells; it reuses `train_loader`, `val_loader`, `test_loader`, `model`,
+# `device`, and `plot_history` from those cells. Run standalone, it imports
+# them from the files.
 # =============================================================================
 
 import json
@@ -28,6 +30,13 @@ except NameError:
     from model import MLPClassifier
     torch.manual_seed(42)
     model = MLPClassifier()
+
+# `plot_history` comes from the plot.py cell (placed before this one in the
+# notebook), or is imported from plot.py when run as a script.
+try:
+    plot_history
+except NameError:
+    from plot import plot_history
 
 # ----------------------------- Configuration ---------------------------------
 NUM_EPOCHS = 20
@@ -106,3 +115,6 @@ torch.save(model.state_dict(), WEIGHTS_PATH)
 with open(HISTORY_PATH, "w") as f:
     json.dump(history, f, indent=2)
 print(f"Saved weights to {WEIGHTS_PATH} and history to {HISTORY_PATH}")
+
+# ----------------------------- Plots -----------------------------------------
+plot_history(history)

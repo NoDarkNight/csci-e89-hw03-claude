@@ -32,3 +32,13 @@ A running log of each request made during this project.
 > You got it! Write train.py -- train the model with SGD (learning rate 0.1) and cross-entropy loss for 20 epochs, using torchmetrics to compute multiclass accuracy. For each epoch, record the mean training loss, training accuracy, and validation accuracy in a variable and print them. Use a GPU if one is available, otherwise CPU is fine. After training, evaluate accuracy on the test set, save the model weights, and save the history (including test accuracy). Just as a reminder, make sure you also update PROMPTS.md.
 
 **Result:** Created `train.py`: SGD (lr 0.1) + `CrossEntropyLoss` for 20 epochs, torchmetrics `MulticlassAccuracy` (`average="micro"`, i.e. plain accuracy), per-epoch `history` dict (train loss / train acc / val acc) printed each epoch, then test evaluation. Saves weights to `mlp_fashion_mnist.pt` and history (with `test_acc`) to `history.json`. Verified with a full CPU run (~3.5 min): final train acc 0.9505, val acc 0.8908, **test acc 0.8894**.
+
+---
+
+## 4. `plot.py`
+
+> You've guessed it again :)
+>
+> Write plot.py to plot the training accuracy per epoch. Put validation accuracy on the same chart for comparison. Save it as png, but make it display them inline when running in Jupyter. Have train.py call the plotting after training. Regenerate the plots from history.json, then commit with the images and update PROMPTS.md.
+
+**Result:** Created `plot.py` with `plot_accuracy` / `plot_history`: one chart of training and validation accuracy per epoch (plus final test accuracy as a dashed reference line), colorblind-safe colors, end-of-line value labels, saved to `accuracy.png`. Shown inline via `plt.show()` only when running in a Jupyter kernel; closed otherwise. `train.py` now calls `plot_history(history)` after saving (in the notebook, the plot.py cell goes before the train.py cell). Regenerated `accuracy.png` from the existing `history.json` without retraining.
